@@ -56,54 +56,6 @@
 							<p>insert info here</p>
 							<h4>Python</h4>
 							<p> Written code for plotting V&#775;O<sub>2</sub> </p>
-							<div class="code-window">
-								<pre>
-								  <code>
-# import things we need
-import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
-import matplotlib.pyplot as plt
-
-# read file
-df = pd.read_csv('../input/demo-knes381/subject_1432.csv', header=[0], skiprows=[1,2,3])
-
-# rename our column headers
-df = df.rename(columns={'VE/': 'VE/VO2','VE/.1': 'VE/VCO2'})
-
-x = df['TIME']
-y = df['VO2']
-y1 = df['VE']
-
-#Find VO2 max (x,y) values
-ymax = max(y)
-xmax = x[y.argmax()]
-
-fig, ax = plt.subplots(1)
-
-# this line seperates the two plots...
-# fig.subplots_adjust(hspace=0)
-
-# annotate the position of V02 max before plotting the value, we could do this later but why.
-
-ax.annotate('$\dot VO_2max$ =({}) L/min'.format(round(ymax, 2)), 
-               xy=(xmax, ymax), xytext=(xmax+.5, ymax+ .5),
-               arrowprops=dict(facecolor='red', shrink= 0.05),
-                )
-# VO2 plot
-ax.plot(x, y, label=('$\dot VO_2$'), c='r' )
-ax.spines[['right', 'top']].set_visible(False)
-ax.set(ylabel=('L/min'))
-ax.set(xlabel=('Time (min)'))
-ax.legend()
-
-# save the figure before we show it... or it will be blank
-fig.savefig("VO2-VE-1432.png", dpi=300, bbox_inches = "tight")
-fig.show()
-								  </code>
-								</pre>
-							  </div>
-
-
 						</div>
 					</div>
 
